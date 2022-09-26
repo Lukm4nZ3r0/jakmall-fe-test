@@ -1,25 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ReactNode, useEffect, useState } from 'react';
+import './App.css'
+import GlobalFonts from './components/fonts';
+import DeliveryOrPayment from './components/main/DeliveryOrPayment';
+import Finish from './components/main/Finish';
+import Stepper, { StepperOption } from './components/reusable/Stepper';
+import { Content, Wrapper } from "./components/styledComponents";
+import { getLocalStorage, setToLocalStorage } from './helper/local_storage';
+
+interface StaticStepperOption extends StepperOption {
+  component: ReactNode;
+}
 
 function App() {
+  const [currentStep, setCurrentStep] = useState(0)
+  const options: Array<StaticStepperOption> = [
+    {
+      value: 0,
+      label: "Delivery",
+      component: <DeliveryOrPayment />
+    },
+    {
+      value: 1,
+      label: "Payment",
+      component: <DeliveryOrPayment />
+    },
+    {
+      value: 2,
+      label: "Finish",
+      component: <Finish />
+    },
+  ]
+  const stepperSetter: (newValue: number) => void = (nv) => {
+    setCurrentStep(nv)
+    setToLocalStorage({
+      stepOption: nv
+    })
+  }
+  const firstInit = () => {
+    const storage = getLocalStorage()
+    setCurrentStep(storage.stepOption)
+  }
+  useEffect(firstInit, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrapper>
+      <GlobalFonts />
+      <Stepper 
+        setValue={stepperSetter}
+        value={currentStep}
+        options={options}
+      />
+      <Content>
+        {options[currentStep].component}
+      </Content>
+    </Wrapper>
   );
 }
 
