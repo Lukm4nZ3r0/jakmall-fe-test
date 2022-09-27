@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# About this Repository
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This app is about a simple flow example for checkout some items that have been added to the cart. This app doesn't contain any kind of stacks, just run in client side and some data are still hardcoded.
 
 ## Available Scripts
 

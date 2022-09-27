@@ -11,7 +11,7 @@ import { generateRandomAlphanumeric, numFormatter } from './helper';
 import { getLocalStorage, initialStore, setToLocalStorage } from './helper/local_storage';
 
 function App() {
-  const { handleSubmit, control, formState: { errors, isValid }, watch, resetField, setValue, reset } = useForm<typeof initialStore>({
+  const { handleSubmit, control, formState: { errors }, watch, resetField, setValue, reset } = useForm<typeof initialStore>({
     defaultValues: getLocalStorage(),
     mode: "onChange",
     reValidateMode: "onChange"
