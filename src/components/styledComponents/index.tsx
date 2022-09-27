@@ -8,6 +8,7 @@ export const themeBgColor = '#FFFAE6'
 export const themeFontColor = '#FF8A00'
 export const themeDisableFontColor = '#F8E6BA'
 export const themeSuccessFontColor = '#1BD97B'
+export const themeDisableField = 'rgba(238,238,238,1)'
 
 interface StepperOptionProps {
   readonly isActive: boolean;
@@ -280,7 +281,7 @@ export const InputLabel = styled.span<InputWrapperProps>`
 `
 export const InputBoxWrapper = styled.div<InputWrapperProps>`
   border: 1px solid ${(props) => getColorByStatus(props.status)};
-  background: ${props => props.disabled ? "rgba(238,238,238,1)" : "#FFFFFF"};
+  background: ${props => props.disabled ? themeDisableField : "#FFFFFF"};
   padding: 10px;
   margin-top: 30px;
   display: flex;
@@ -385,10 +386,10 @@ export const RadioInput = styled.div<StepperOptionProps>`
     }
   `}
 `
-export const NextButton = styled.button`
-  background: ${themeFontColor};
+export const NextButton = styled.button<Omit<InputWrapperProps, "status">>`
+  background: ${props => props.disabled ? themeDisableField : themeFontColor};
   border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 3px 5px 10px rgba(255, 138, 0, 0.2);
+  box-shadow: ${props => props.disabled ? "none" : "3px 5px 10px rgba(255, 138, 0, 0.2)" };
   border-radius: 2px;
   font-family: 'Inter UI';
   font-style: normal;
@@ -398,7 +399,7 @@ export const NextButton = styled.button`
   text-align: center;
   color: #FFFFFF;
   padding: 15px 0 15px 0;
-  cursor: pointer;
+  cursor: ${props => props.disabled ? "not-allowed" : "pointer" };
 `
 export const SummaryTopInfoWrapper = styled.div`
   display: flex;

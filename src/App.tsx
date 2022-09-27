@@ -319,7 +319,11 @@ function App() {
                   <span>{getTotalPayment()}</span>
                 </FlexRow>
               </CustomSubTitleWrapper>
-              {isValid && getLabelBtnByStatus() && <NextButton onClick={handleSubmit(submitHandler)}>{getLabelBtnByStatus()}</NextButton>}
+              {getLabelBtnByStatus() && 
+                <NextButton onClick={handleSubmit(submitHandler)}>
+                  {getLabelBtnByStatus()}
+                </NextButton>
+              }
             </RightContentMainWrapper>
           </RightContentWrapper>
         </FlexRowResponsive>
