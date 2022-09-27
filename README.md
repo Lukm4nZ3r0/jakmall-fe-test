@@ -2,6 +2,8 @@
 
 This app is about a simple flow example for checkout some items that have been added to the cart. This app doesn't contain any kind of stacks, just run in client side and some data are still hardcoded.
 
+Demo site: https://deluxe-eclair-717114.netlify.app/
+
 ## Available Scripts
 
 In the project directory, you can run:
