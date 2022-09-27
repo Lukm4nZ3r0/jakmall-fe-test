@@ -157,13 +157,17 @@ export const LeftContentWrapper = styled.div`
     width: 100%;
   }
 `
+export const LeftContentFinishWrapper = styled(LeftContentWrapper)`
+  align-items: center;
+  justify-content: center;
+`
 export const RightContentWrapper = styled.div`
   width: 35%;
   border-left: 1px solid rgba(255, 138, 0, .2);
   padding-left: 15px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 100px;
   justify-content: space-between;
 
   @media only screen and (max-width: ${responsiveMobileBreakpoint}px) {
@@ -179,7 +183,7 @@ export const RightContentMainWrapper = styled.div`
   flex-direction: column;
   gap: 10px;
 `
-export const RightContentLabel = styled.span`
+export const RightContentLabel = styled.div`
   font-family: 'Inter UI';
   font-style: normal;
   font-weight: 400;
@@ -187,7 +191,7 @@ export const RightContentLabel = styled.span`
   line-height: 17px;
   color: #000000;
 `
-export const RightContentValue = styled.span`
+export const RightContentValue = styled.div`
   font-family: 'Inter UI';
   font-style: normal;
   font-weight: 700;
@@ -224,6 +228,13 @@ export const FlexRow = styled.div`
   flex-direction: row;
   justify-content: space-between;
   gap: 15px;
+  transition: all 0.3s;
+`
+export const FlexCol = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
   transition: all 0.3s;
 `
 export const FlexRowResponsive = styled(FlexRow)`
@@ -275,6 +286,13 @@ export const InputBoxWrapper = styled.div<InputWrapperProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`
+export const MaxCharacterMessage = styled.div<InputWrapperProps>`
+  color: ${(props) => getColorByStatus(props.status)};
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
 `
 export const InputErrorMessage = styled.span<InputWrapperProps>`
   color: ${(props) => getColorByStatus(props.status)};
@@ -340,6 +358,15 @@ export const RadioInput = styled.div<StepperOptionProps>`
   position: relative;
   background: ${props => props.isActive ? "rgba(27, 217, 123, 0.1)" : "#FFFFFF"};
   border: ${props => props.isActive ? "2px solid #1BD97B" : "1px solid #CCCCCC" };
+
+  font-family: 'Inter UI';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000000;
+  opacity: ${props => props.isActive ? "1" : ".6" };
+
   padding: 10px;
   display: flex;
   align-items: center;
@@ -372,4 +399,59 @@ export const NextButton = styled.button`
   color: #FFFFFF;
   padding: 15px 0 15px 0;
   cursor: pointer;
+`
+export const SummaryTopInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  &:before {
+    content: "";
+    border-top: 1px solid #D8D8D8;
+    width: 80px;
+    margin: 10px 0 10px 0;
+  }
+`
+export const SummaryTopInfoLabel = styled.div`
+  font-family: 'Inter UI';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+`
+export const SummaryTopInfoValue = styled.div`
+  font-family: 'Inter UI';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #1BD97B;
+`
+export const WarningAlertWrapper = styled.div`
+  background: ${themeBgColor};
+  color: ${themeFontColor};
+  font-family: 'Inter UI';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 15px;
+  border-radius: 5px;
+`
+export const WarningAlertTitle = styled.div`
+font-family: 'Inter UI';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  color: ${themeFontColor};
+`
+export const WarningAlertIcon = styled.div`
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  color: ${themeFontColor};
 `

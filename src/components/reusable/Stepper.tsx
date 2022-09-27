@@ -1,24 +1,24 @@
 import { FC } from "react"
+import CONSTANT from "../../Constant";
 import { StepperOptionNumber, StepperOptionWrapper, StepperWrapper } from "../styledComponents"
 
-export interface StepperOption {
-  label: string;
-  value: number;
-}
-
 export interface StepperProps {
-  value: number;
-  options: Array<StepperOption>
-  setValue: (newValue: number) => void;
+  value: "Delivery" | "Payment" | "Finish";
+  setValue: (newValue: "Delivery" | "Payment" | "Finish") => void;
 }
 
 const Stepper: FC<StepperProps> = (props) => {
+  const findSelectedStepperIndex = CONSTANT.STEPPER_OPTION.findIndex(option => option === props.value)
   return (
     <StepperWrapper>
-      {props.options.map((option, index)=>
-        <StepperOptionWrapper isActive={index <= props.value} key={index}>
-          <StepperOptionNumber isActive={index <= props.value}>{index+1}</StepperOptionNumber>
-          <div>{option.label}</div>
+      {CONSTANT.STEPPER_OPTION.map((option, index)=>
+        <StepperOptionWrapper 
+          isActive={index < findSelectedStepperIndex} 
+          key={index}
+          onClick={()=> index < findSelectedStepperIndex && props.setValue(option)}
+        >
+          <StepperOptionNumber isActive={index <= findSelectedStepperIndex}>{index + 1}</StepperOptionNumber>
+          <div>{option}</div>
         </StepperOptionWrapper>
       )}
     </StepperWrapper>

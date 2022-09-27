@@ -1,6 +1,6 @@
 export const initialStore = {
-  stepOption: 0,
-  name: "",
+  stepOption: "Delivery" as "Delivery" | "Payment" | "Finish",
+  email: "",
   phone: "",
   address: "",
   isDropshipper: false,
@@ -11,9 +11,11 @@ export const initialStore = {
 }
 
 export const setToLocalStorage = (nv: Partial<typeof initialStore>) => {
-  localStorage.setItem('fe-test-store', JSON.stringify({...initialStore, ...nv}))
+  localStorage.setItem('fe-test-store', JSON.stringify({...getLocalStorage(), ...nv}))
 }
 
-export const getLocalStorage = (): typeof initialStore => {
-  return JSON.parse(localStorage.getItem('fe-test-store') ?? JSON.stringify(initialStore))
+export const getLocalStorage = (message?: string): typeof initialStore => {
+  const parsedStorage = JSON.parse(localStorage.getItem('fe-test-store') ?? JSON.stringify(initialStore))
+  if(message) console.log(message, parsedStorage)
+  return parsedStorage
 }

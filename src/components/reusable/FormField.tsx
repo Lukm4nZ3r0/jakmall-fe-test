@@ -1,6 +1,6 @@
 import { Fragment, KeyboardEventHandler, PropsWithChildren, ReactNode } from "react"
 import { Controller, ControllerRenderProps, FieldValues, Control, FieldErrors, FieldPath, UseControllerProps } from "react-hook-form";
-import { InputErrorMessage, InputLabel, InputBoxWrapper, InputWrapper, InputText, InputErrorIcon, InputTextArea, InputCheckboxWrapper, InputCheckboxLabel, RadioInputWrapper, RadioInput } from "../styledComponents"
+import { InputErrorMessage, InputLabel, InputBoxWrapper, InputWrapper, InputText, InputErrorIcon, InputTextArea, InputCheckboxWrapper, InputCheckboxLabel, RadioInputWrapper, RadioInput, MaxCharacterMessage, FlexRow } from "../styledComponents"
 
 export type FieldStatus = "normal" | "success" | "error"
 export enum FieldType {
@@ -58,7 +58,7 @@ const FormField = <T extends FieldValues, U extends FieldPath<T>>(props: PropsWi
       },
       {
         type: FieldType.TEXTAREA,
-        component: <InputTextArea {...fieldProps} disabled={props.disabled} />
+        component: <InputTextArea {...fieldProps} disabled={props.disabled} rows={4} />
       }
     ]
     const selectedFinder = selectedField.find(selected => selected.type === props.fieldType)
@@ -69,14 +69,27 @@ const FormField = <T extends FieldValues, U extends FieldPath<T>>(props: PropsWi
           {selectedFinder.component}
           {getStatusIcon(getCurrentStatus())}
         </InputBoxWrapper>
-        {getErrorMessage() && <InputErrorMessage status={getCurrentStatus()}>{getErrorMessage()}</InputErrorMessage>}
+        <FlexRow>
+          {getErrorMessage() && <InputErrorMessage status={getCurrentStatus()}>{getErrorMessage()}</InputErrorMessage>}
+          {!!(props.rules?.maxLength as {message: string; value: number})?.value && 
+            <MaxCharacterMessage status={getCurrentStatus()}>
+              {fieldProps.value.length}/{(props.rules?.maxLength as {message: string; value: number})?.value}
+            </MaxCharacterMessage>
+          }
+        </FlexRow>
       </InputWrapper>
     )
     else if(props.fieldType === FieldType.SINGLE_CHECKBOX) {
       return (
         <Fragment>
           <InputCheckboxWrapper onClick={()=> !props.disabled && fieldProps.onChange({target:{value: !fieldProps.value, checked: !fieldProps.value}, currentTarget:{value: !fieldProps.value, checked: !fieldProps.value}})}>
-            <input type="checkbox" checked={fieldProps.value} readOnly={fieldProps.value} disabled={props.disabled} />
+            <input 
+              type="checkbox" 
+              onChange={(e)=>fieldProps.onChange(e)}
+              checked={fieldProps.value} 
+              readOnly={fieldProps.value} 
+              disabled={props.disabled} 
+            />
             <InputCheckboxLabel>{props.label}</InputCheckboxLabel>
           </InputCheckboxWrapper>
           {getErrorMessage() && <InputErrorMessage status={getCurrentStatus()}>{getErrorMessage()}</InputErrorMessage>}
