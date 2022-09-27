@@ -358,7 +358,7 @@ export const RadioInputWrapper = styled.div`
 export const RadioInput = styled.div<StepperOptionProps>`
   position: relative;
   background: ${props => props.isActive ? "rgba(27, 217, 123, 0.1)" : "#FFFFFF"};
-  border: ${props => props.isActive ? "2px solid #1BD97B" : "1px solid #CCCCCC" };
+  border: ${props => props.isActive ? `2px solid ${themeSuccessFontColor}` : "1px solid #CCCCCC" };
 
   font-family: 'Inter UI';
   font-style: normal;
@@ -382,7 +382,7 @@ export const RadioInput = styled.div<StepperOptionProps>`
       font-weight: 400;
       font-size: 18px;
       line-height: 18px;
-      color: #1BD97B;
+      color: ${themeSuccessFontColor};
     }
   `}
 `
@@ -427,7 +427,7 @@ export const SummaryTopInfoValue = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
-  color: #1BD97B;
+  color: ${themeSuccessFontColor};
 `
 export const WarningAlertWrapper = styled.div`
   background: ${themeBgColor};

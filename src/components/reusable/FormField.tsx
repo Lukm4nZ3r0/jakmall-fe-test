@@ -1,5 +1,6 @@
 import { Fragment, KeyboardEventHandler, PropsWithChildren, ReactNode } from "react"
 import { Controller, ControllerRenderProps, FieldValues, Control, FieldErrors, FieldPath, UseControllerProps } from "react-hook-form";
+import CONSTANT from "../../Constant";
 import { InputErrorMessage, InputLabel, InputBoxWrapper, InputWrapper, InputText, InputErrorIcon, InputTextArea, InputCheckboxWrapper, InputCheckboxLabel, RadioInputWrapper, RadioInput, MaxCharacterMessage, FlexRow } from "../styledComponents"
 
 export type FieldStatus = "normal" | "success" | "error"
@@ -50,29 +51,29 @@ const FormField = <T extends FieldValues, U extends FieldPath<T>>(props: PropsWi
     const selectedField = [
       {
         type: FieldType.TEXT,
-        component: <InputText {...fieldProps} disabled={props.disabled} />
+        component: <InputText {...fieldProps} disabled={props.disabled} data-testid={CONSTANT.UNIT_TEST_PREFIX_ID.FIELD + props.name} />
       },
       {
         type: FieldType.PHONE,
-        component: <InputText {...fieldProps} onKeyDown={onKeyPressHandler} disabled={props.disabled} />
+        component: <InputText {...fieldProps} onKeyDown={onKeyPressHandler} disabled={props.disabled} data-testid={CONSTANT.UNIT_TEST_PREFIX_ID.FIELD + props.name} />
       },
       {
         type: FieldType.TEXTAREA,
-        component: <InputTextArea {...fieldProps} disabled={props.disabled} rows={4} />
+        component: <InputTextArea {...fieldProps} disabled={props.disabled} rows={4} data-testid={CONSTANT.UNIT_TEST_PREFIX_ID.FIELD + props.name} />
       }
     ]
     const selectedFinder = selectedField.find(selected => selected.type === props.fieldType)
     if(selectedFinder) return (
       <InputWrapper status={getCurrentStatus()}>
         <InputLabel status={getCurrentStatus()}>{props.label}</InputLabel>
-        <InputBoxWrapper status={getCurrentStatus()} disabled={props.disabled}>
+        <InputBoxWrapper data-testid={CONSTANT.UNIT_TEST_PREFIX_ID.FIELD_WRAPPER + props.name} status={getCurrentStatus()} disabled={props.disabled}>
           {selectedFinder.component}
           {getStatusIcon(getCurrentStatus())}
         </InputBoxWrapper>
         <FlexRow>
-          {getErrorMessage() && <InputErrorMessage status={getCurrentStatus()}>{getErrorMessage()}</InputErrorMessage>}
+          {getErrorMessage() && <InputErrorMessage data-testid={CONSTANT.UNIT_TEST_PREFIX_ID.ERROR_MESSAGE + props.name} status={getCurrentStatus()}>{getErrorMessage()}</InputErrorMessage>}
           {!!(props.rules?.maxLength as {message: string; value: number})?.value && 
-            <MaxCharacterMessage status={getCurrentStatus()}>
+            <MaxCharacterMessage data-testid={CONSTANT.UNIT_TEST_PREFIX_ID.FIELD_COUNTER + props.name} status={getCurrentStatus()}>
               {fieldProps.value.length}/{(props.rules?.maxLength as {message: string; value: number})?.value}
             </MaxCharacterMessage>
           }
@@ -89,10 +90,11 @@ const FormField = <T extends FieldValues, U extends FieldPath<T>>(props: PropsWi
               checked={fieldProps.value} 
               readOnly={fieldProps.value} 
               disabled={props.disabled} 
+              data-testid={CONSTANT.UNIT_TEST_PREFIX_ID.FIELD + props.name}
             />
             <InputCheckboxLabel>{props.label}</InputCheckboxLabel>
           </InputCheckboxWrapper>
-          {getErrorMessage() && <InputErrorMessage status={getCurrentStatus()}>{getErrorMessage()}</InputErrorMessage>}
+          {getErrorMessage() && <InputErrorMessage data-testid={CONSTANT.UNIT_TEST_PREFIX_ID.ERROR_MESSAGE + props.name} status={getCurrentStatus()}>{getErrorMessage()}</InputErrorMessage>}
         </Fragment>
       )
     }
@@ -107,12 +109,13 @@ const FormField = <T extends FieldValues, U extends FieldPath<T>>(props: PropsWi
                 const valueOrNull = fieldProps.value === option.value ? null : option.value
                 if(!props.disabled) fieldProps.onChange({target:{value: valueOrNull}, currentTarget:{value: valueOrNull}})
               }}
+              data-testid={CONSTANT.UNIT_TEST_PREFIX_ID.FIELD + props.name}
             >
               {option.label}
             </RadioInput>
           )}
         </RadioInputWrapper>
-        {getErrorMessage() && <InputErrorMessage status={getCurrentStatus()}>{getErrorMessage()}</InputErrorMessage>}
+        {getErrorMessage() && <InputErrorMessage data-testid={CONSTANT.UNIT_TEST_PREFIX_ID.ERROR_MESSAGE + props.name} status={getCurrentStatus()}>{getErrorMessage()}</InputErrorMessage>}
       </Fragment>
     )
   }

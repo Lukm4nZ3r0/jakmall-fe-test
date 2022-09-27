@@ -6,6 +6,13 @@ export interface ConstantProps {
   PAYMENT_OPTIONS: Array<{ amountLeft?: number } & CustomOption>;
   COST_OF_GOODS: number;
   DROPSHIPPING_FEE: number;
+  UNIT_TEST_PREFIX_ID: {
+    ERROR_MESSAGE: string;
+    FIELD_WRAPPER: string;
+    FIELD: string;
+    FIELD_COUNTER: string;
+    SUBMIT_BTN: string;
+  };
 }
 
 const CONSTANT: ConstantProps = {
@@ -44,6 +51,13 @@ const CONSTANT: ConstantProps = {
   ],
   COST_OF_GOODS: 500000,
   DROPSHIPPING_FEE: 5900,
+  UNIT_TEST_PREFIX_ID: {
+    ERROR_MESSAGE: "error-message-test-",
+    FIELD_WRAPPER: "field-wrapper-test-",
+    FIELD: "field-test-",
+    FIELD_COUNTER: "field-counter-test-",
+    SUBMIT_BTN: "submit-btn-test"
+  }
 }
 
 export default CONSTANT

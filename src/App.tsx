@@ -320,7 +320,7 @@ function App() {
                 </FlexRow>
               </CustomSubTitleWrapper>
               {getLabelBtnByStatus() && 
-                <NextButton onClick={handleSubmit(submitHandler)}>
+                <NextButton data-testid={CONSTANT.UNIT_TEST_PREFIX_ID.SUBMIT_BTN} onClick={handleSubmit(submitHandler)}>
                   {getLabelBtnByStatus()}
                 </NextButton>
               }
