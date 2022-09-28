@@ -40,7 +40,6 @@ function App() {
       )
     }
   }
-  console.log('watch()', watch())
   useEffect(isDropshipperWatcher, [watch("isDropshipper")])
   useEffect(()=>setToLocalStorage(watch()), [watch()])
   const stepperSetter: (newValue: "Delivery" | "Payment" | "Finish") => void = (nv) => {
