@@ -27,6 +27,11 @@ function App() {
     if(!watch("isDropshipper")) {
       resetField("dropshipperName")
       resetField("dropshipperPhoneNumber")
+
+      setToLocalStorage({
+        dropshipperName: "",
+        dropshipperPhoneNumber: ""
+      })
     }
   }
   const shipmentInfoRenderer = () => {
