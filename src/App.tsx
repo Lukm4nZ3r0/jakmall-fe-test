@@ -25,13 +25,8 @@ function App() {
   }
   const isDropshipperWatcher = () => {
     if(!watch("isDropshipper")) {
-      resetField("dropshipperName")
-      resetField("dropshipperPhoneNumber")
-
-      setToLocalStorage({
-        dropshipperName: "",
-        dropshipperPhoneNumber: ""
-      })
+      resetField("dropshipperName", { defaultValue: "" })
+      resetField("dropshipperPhoneNumber", { defaultValue: "" })
     }
   }
   const shipmentInfoRenderer = () => {
@@ -45,6 +40,7 @@ function App() {
       )
     }
   }
+  console.log('watch()', watch())
   useEffect(isDropshipperWatcher, [watch("isDropshipper")])
   useEffect(()=>setToLocalStorage(watch()), [watch()])
   const stepperSetter: (newValue: "Delivery" | "Payment" | "Finish") => void = (nv) => {
