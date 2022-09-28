@@ -15,7 +15,13 @@ export const setToLocalStorage = (nv: Partial<typeof initialStore>) => {
 }
 
 export const getLocalStorage = (message?: string): typeof initialStore => {
-  const parsedStorage = JSON.parse(localStorage.getItem('fe-test-store') ?? JSON.stringify(initialStore))
-  if(message) console.log(message, parsedStorage)
-  return parsedStorage
+  try {
+    const parsedStorage = JSON.parse(localStorage.getItem('fe-test-store') ?? JSON.stringify(initialStore))
+    if(message) console.log(message, parsedStorage)
+    return parsedStorage
+  }
+  catch(err) {
+    console.log(err)
+    return initialStore
+  }
 }
