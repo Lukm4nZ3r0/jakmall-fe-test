@@ -42,7 +42,7 @@ const FormField = <T extends FieldValues, U extends FieldPath<T>>(props: PropsWi
     else return "normal"
   }
   const onKeyPressHandler: KeyboardEventHandler = (evt) => {
-    const allowedKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "Delete", "Backspace", "ArrowLeft", "ArrowUp", "ArrowDown", "ArrowRight", "Tab", "."]
+    const allowedKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "Delete", "Backspace", "ArrowLeft", "ArrowUp", "ArrowDown", "ArrowRight", "Tab", ".", "-", "(", ")"]
     const finder = allowedKeys.find(key => key === evt.key)
     
     if(!finder) evt.preventDefault()

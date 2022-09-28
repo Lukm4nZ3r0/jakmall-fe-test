@@ -146,7 +146,7 @@ function App() {
                     },
                     pattern: {
                       message: "Phone Number is wrong format!",
-                      value: /^[0-9|-|+|(|)]*$/
+                      value: /^[0-9|\-|+|(|)]*$/
                     },
                     minLength: {
                       message: "Phone Number minimal 6 digit",
@@ -157,7 +157,7 @@ function App() {
                       value: 20
                     },
                   }}
-                  fieldType={FieldType.TEXT}
+                  fieldType={FieldType.PHONE}
                   control={control}
                 />
                 <FormField
@@ -204,7 +204,7 @@ function App() {
                     },
                     pattern: {
                       message: "Dropshipper Phone Number is wrong format!",
-                      value: /^[0-9|-|+|(|)]*$/
+                      value: /^[0-9|\-|+|(|)]*$/
                     },
                     minLength: {
                       message: "Phone Number minimal 6 digit",
