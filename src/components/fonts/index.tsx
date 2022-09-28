@@ -13,14 +13,14 @@ export default createGlobalStyle`
   @font-face {
     font-family: 'Inter UI';
     src: local('Inter UI Bold'), local('Inter UI Medium'), local('Inter UI Regular'),
-    url(${InterUIBold}) format('ttf'),
-    url(${InterUIMedium}) format('ttf'),
-    url(${InterUIRegular}) format('ttf');
+          url(${InterUIBold}) format('truetype'),
+          url(${InterUIMedium}) format('truetype'),
+          url(${InterUIRegular}) format('truetype');
   }
 
   @font-face {
     font-family: 'Material Icons';
     src: local('Material Icons Regular'), 
-    url(${MaterialIconsRegular}) format('ttf');
+    url(${MaterialIconsRegular}) format('truetype');
   }
 `;
