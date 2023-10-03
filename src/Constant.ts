@@ -19,12 +19,12 @@ const CONSTANT: ConstantProps = {
   STEPPER_OPTION: ["Delivery","Payment","Finish"],
   SHIPMENT_OPTIONS: [
     {
-      label: "GO-SEND",
+      label: "GO-SEND Instant",
       value: 15000,
       estimatedTime: "today"
     },
     {
-      label: "JNE",
+      label: "JNE Courier",
       value: 9000,
       estimatedTime: "2 days"
     },
