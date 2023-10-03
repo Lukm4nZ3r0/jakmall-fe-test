@@ -45,7 +45,7 @@ const CONSTANT: ConstantProps = {
       value: 1
     },
     {
-      label: "Virtual Account",
+      label: "Virtual Account (BCA, BRI, BNI)",
       value: 2
     },
   ],
