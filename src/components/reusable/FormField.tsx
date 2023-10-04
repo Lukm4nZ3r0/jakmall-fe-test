@@ -41,7 +41,7 @@ const FormField = <T extends FieldValues, U extends FieldPath<T>>(props: PropsWi
     }
     else return "normal"
   }
-  const onKeyPressHandler: KeyboardEventHandler = (evt) => {
+  const onKeyPressHandler: KeyboardEventHandler = (evt: { key: string; preventDefault: () => void; }) => {
     const allowedKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "Delete", "Backspace", "ArrowLeft", "ArrowUp", "ArrowDown", "ArrowRight", "Tab", ".", "-", "(", ")"]
     const finder = allowedKeys.find(key => key === evt.key)
     
@@ -84,9 +84,10 @@ const FormField = <T extends FieldValues, U extends FieldPath<T>>(props: PropsWi
       return (
         <Fragment>
           <InputCheckboxWrapper onClick={()=> !props.disabled && fieldProps.onChange({target:{value: !fieldProps.value, checked: !fieldProps.value}, currentTarget:{value: !fieldProps.value, checked: !fieldProps.value}})}>
-            <input 
+            <input
+              placeholder=""
               type="checkbox" 
-              onChange={(e)=>fieldProps.onChange(e)}
+              onChange={(e: any)=>fieldProps.onChange(e)}
               checked={fieldProps.value} 
               readOnly={fieldProps.value} 
               disabled={props.disabled} 
@@ -101,7 +102,7 @@ const FormField = <T extends FieldValues, U extends FieldPath<T>>(props: PropsWi
     else return (
       <Fragment>
         <RadioInputWrapper>
-          {props.options?.map((option, index) =>
+          {props.options?.map((option: { value: any; label: any; }, index: any) =>
             <RadioInput 
               key={index} 
               isActive={fieldProps.value === option.value}
@@ -124,7 +125,7 @@ const FormField = <T extends FieldValues, U extends FieldPath<T>>(props: PropsWi
       {...props}
       name={props.name}
       control={props.control}
-      render={(renderProps) => renderSelectedField(renderProps.field)}
+      render={(renderProps: { field: any; }) => renderSelectedField(renderProps.field)}
     />
   )
 }
