@@ -5,7 +5,7 @@ export interface AlertMessageProps {
   variants?: "warning"
 }
 
-const AlertMessage: FC<PropsWithChildren<AlertMessageProps>> = (props) => {
+const AlertMessage: FC<PropsWithChildren<AlertMessageProps>> = (props: { children: any; }) => {
   return (
     <WarningAlertWrapper>
       <WarningAlertIcon>warning</WarningAlertIcon>
